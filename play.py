@@ -1,4 +1,5 @@
 from board import Board
+
 def acceptBoardSize():
     minBoardSize = 3
     boardSize = None
@@ -16,6 +17,8 @@ if __name__ == "__main__":
 
     player = 1
     while True:
+        print("\033[H\033[J")
+
         board.display()
 
         winner = board.winner()

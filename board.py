@@ -40,7 +40,11 @@ class Board:
         self.players = (p1, p2)
     
     def update(self, position, player):
-        player = int(player)
+        try:
+            player = int(player)
+            position  = int(position)
+        except ValueError:
+            return False
 
         if player < 1 and player > 2:
             return False
@@ -58,8 +62,19 @@ class Board:
         return True
             
     def display(self):
-        for row in self.board:
-            print(row)
+        for i in range(self.size):
+            for j in range(self.size):
+                value = self.board[i][j]
+                if value is None:
+                    value = " "
+
+                if j == 0:
+                    print(" {} ".format(value), end="")
+                else:
+                    print("| {} ".format(value), end="")
+            print("")
+            if i < (self.size - 1):
+                print("____" * self.size)
     
     def winner(self):
         # Horizantal
